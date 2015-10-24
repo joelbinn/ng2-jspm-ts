@@ -8,12 +8,13 @@
     <packaging>war</packaging>
 
     <build>
+        <finalName>ng2-jspm-ts</finalName>
         <plugins>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
-                <version>@project.version@</version>
+                <version>0.0.26</version>
 
                 <executions>
 
@@ -23,8 +24,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v0.12.2</nodeVersion>
-                            <npmVersion>2.7.6</npmVersion>
+                            <nodeVersion>v4.2.1</nodeVersion>
+                            <npmVersion>2.14.7</npmVersion>
                         </configuration>
                     </execution>
 
@@ -40,19 +41,9 @@
                     </execution>
 
                     <execution>
-                        <id>npm run build</id>
+                        <id>jspm install</id>
                         <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>run build</arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>bower install</id>
-                        <goals>
-                            <goal>bower</goal>
+                            <goal>jspm</goal>
                         </goals>
                         <configuration>
                             <arguments>install</arguments>
@@ -60,36 +51,24 @@
                     </execution>
 
                     <execution>
-                        <id>jspm install</id>
+                        <id>npm dist build</id>
                         <goals>
-                            <goal>jspm</goal>
+                            <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>--version</arguments>
+                            <arguments>run dist</arguments>
                         </configuration>
                     </execution>
-
-                    <execution>
-                        <id>dist build</id>
-                        <goals>
-                            <goal>grunt</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>--no-color</arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>javascript tests</id>
-                        <goals>
-                            <goal>karma</goal>
-                        </goals>
-                        <configuration>
-                            <karmaConfPath>src/test/javascript/karma.conf.ci.js</karmaConfPath>
-                        </configuration>
-                    </execution>
-
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warSourceDirectory>dist</warSourceDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>

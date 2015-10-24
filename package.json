@@ -1,4 +1,8 @@
 {
+  "scripts": {
+  "scripts": {
+    "dist": "rm -rf dist; mkdir dist; jspm bundle-sfx app/main dist/app.min.js --minify;./node_modules/.bin/html-dist index.html --remove-all --minify --insert app.min.js -o dist/index.html"
+  },
   "jspm": {
     "dependencies": {
       "angular2": "npm:angular2@^2.0.0-alpha.44",
@@ -12,6 +16,8 @@
     }
   },
   "devDependencies": {
-    "html-dist": "^0.1.0"
+    "html-dist": "^0.1.0",
+    "jspm": "^0.16.13",
+    "live-server": "^0.8.2"
   }
 }
