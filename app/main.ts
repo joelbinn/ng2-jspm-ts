@@ -1,8 +1,8 @@
 ///<reference path="./_references.d.ts"/>
 import 'bootstrap';
 import "bootstrap/css/bootstrap.css!"
-
 import "reflect-metadata"
+
 import {
     Component,
     View,
@@ -14,10 +14,13 @@ import {
 })
 @View({
     template: `
+<div class="container">
   <h1>Simple Angular 2.0 App + JSPM + TS</h1>
-  `
+  <div class="well well-lg">{{title}}</div>
+</div>
+`
 })
-class App {
+class Main {
     title:string;
 
     constructor() {
@@ -25,6 +28,6 @@ class App {
     }
 }
 
-bootstrap(App);
+bootstrap(Main);
 
 console.log('Loaded');
